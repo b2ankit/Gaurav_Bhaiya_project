@@ -1,0 +1,110 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .page-container {
+    height: auto;
+    color: white;
+    cursor:pointer;
+  }
+
+  .page-container .filter-sort-container{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgb(224, 20, 133);
+      position: fixed;
+      bottom: 8%;
+      right: 5%;
+      opacity: 1;
+  }
+  .filter-sort-container .fa-filter{
+      position: relative;
+      font-size: 28px;
+      margin-left: 15px;
+      margin-top: 12px;
+  }
+  #mybox{
+    width: 25%;
+    height: auto;
+    background-color:whitesmoke;
+    /* display: block; */
+    display: none;
+    float: right;
+    position: fixed;
+    margin-top: -5%;
+    margin-right: 7%;
+    color: black;
+    border-radius: 10px;
+    z-index: 1000;
+    animation-name: mybox;
+    animation-duration: 1s;
+  }
+  @keyframes mybox {
+    from {opacity:0;}
+    to {opacity:1;}
+  }
+
+  .mymainbox table
+  {
+      position: relative;
+      width: 90%;
+      margin: 5%;
+      height: auto;
+      /* border: 2px solid black;       */
+  }
+
+  .mymainbox th{
+    /* border: 1px solid black; */
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    color:white;
+    background-color: rgb(56, 55, 55);
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    
+  }
+
+  .mymainbox .fliter td{
+    /* border: 1px solid black; */
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: black;
+    /* color:red; */
+  }
+  #filter_type{
+      /* background-color: brown; */
+      margin: 0;
+      padding: 0;
+  }
+  #filter_type form label{
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 20px;
+  }
+
+  #range_bar{
+    margin: 5px;
+    padding: 10px 0px;
+  }
+
+  #range_bar span{
+    margin: 0px 20px;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .sort table th,td{
+    padding: 5px;
+    letter-spacing: 0.3px;
+    /* background-color: rgb(221, 213, 213); */
+  }
+
+  #hovereffect:hover{
+      background-color: rgb(221, 213, 213);
+  }

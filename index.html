@@ -6,6 +6,8 @@
   <link rel="stylesheet" media="screen and (min-width: 601px)" href="shop.css">
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="colours.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href ="filter_sort.css">
   <script src="products.js"></script>
   <script src="shop.js"></script>
   <title>E-Veg Shop</title>
@@ -57,6 +59,70 @@
 
     </div>
 
+    <div class="page-container">
+      <div class="filter-sort-container" id="myicon" onclick="myFunction()">
+          <i class="fa fa-filter" aria-hidden="true"></i>
+      </div>
+      <div id="mybox" class="mymainbox">
+          <table class="fliter">
+              <tr>
+                <th>Filter</th>
+              </tr>
+              <tr>
+                <td>Category
+                  <table id ="filter_type">
+                      <tr>
+                      <td>
+                          <form action="#">
+                           <input type="radio" id="all" name="type" value="all" checked="checked">
+                             <label for="all">All</label><br>
+                             <input type="radio" id="veg" name="type" value="veg">
+                             <label for="veg">Vegetable's</label><br>
+                             <input type="radio" id="fruit" name="type" value="fruit">
+                             <label for="fruit">Fruit's</label><br>
+                             <input type="radio" id="dairy" name="type" value="dairy">
+                             <label for="dairy">Dairy product's</label><br>
+                             <input type="radio" id="other" name="type" value="other">
+                             <label for="other">Other's</label><br>
+                          </form>
+                      </td>
+                      </tr>
+                  </table>
+               </td>
+              </tr>
+              <tr>
+                <td>Price
+                  <div id="range_bar">
+                      <span>Min</span><input type="range" min="1" max="100" value="90"><span>Max</span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+  
+            <table class="sort">
+              <tr>
+                <th>Sort By</th>
+              </tr>
+              <tr>
+                <td id="hovereffect">Popularity</td>
+              </tr>
+              <tr>
+                <td id="hovereffect">High to Low</td>
+              </tr>
+              <tr>
+                  <td id="hovereffect">Low to High</td>
+              </tr>
+              <tr>
+                  <td id="hovereffect">A to Z</td>
+              </tr>
+              <tr>
+                  <td id="hovereffect">Z to A</td>
+              </tr>
+            </table>
+  
+      </div> 
+  </div> 
+
     <div class="about">
       <div>&copy; 2021 InterVeg Coventry Ltd.</div>
       <div>Fresh produce from the Midland's green countryside.</div>
@@ -68,4 +134,5 @@
     <p><a id="acceptCookies">Accept</a></p>
     </div>
 </body>
+<script src="fliter_sort.js"></script>
 </html>

@@ -93,11 +93,28 @@
     padding: 10px 0px;
   }
 
-  #range_bar span{
+  #range_bar_1{
+    width: 100%;
+    margin: 0px 10px;
+  }
+
+  #min_value{
+    margin: 0px 10px;
+    font-size: 15px;
+   float: left;
+  }
+
+  #max_value{
+    /* margin: 0px 10px; */
+    font-size: 15px;
+    float: right;
+  }
+
+  /* #range_bar span{
     margin: 0px 20px;
     font-size: 15px;
     font-weight: 300;
-  }
+  } */
 
   .sort table th,td{
     padding: 5px;

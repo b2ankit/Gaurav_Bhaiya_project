@@ -1,6 +1,10 @@
 let productDetails = {};
 let searchStr = "";
 let basket = {};
+let sort_options = "";
+let filter_options = "";
+let filter_maxprice = "";  
+
 //Each product is based on a 'card'; a box that contains information about that product.
 //You can change the card template here. The [EVEGPRODUCT#] will always be subsituted for 
 //the element in the imagesArr (see fruit.js)
@@ -20,254 +24,358 @@ var cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
 <input class="buyInput" data-num="[EVEGPRODUCT#]" min="0" value="0" type="number">
 <button class="btn adjustUp">+</button></div></div></div></div></div>`;
 
-  function init(){
-    const toggleButton = document.getElementsByClassName('toggle-button')[0];
-    const hero = document.getElementsByClassName('hero')[0];
-    const navbarLinks = document.getElementsByClassName('navbar-links')[0];
+function init() {
+  const toggleButton = document.getElementsByClassName('toggle-button')[0];
+  const hero = document.getElementsByClassName('hero')[0];
+  const navbarLinks = document.getElementsByClassName('navbar-links')[0];
 
-    //When the toggle button is pressed (if visible by the screen size, the menu is shown)
-    toggleButton.addEventListener('click',()=>{
-      navbarLinks.classList.toggle('active');
-      hero.classList.toggle('menuactive');
-    });
+  //When the toggle button is pressed (if visible by the screen size, the menu is shown)
+  toggleButton.addEventListener('click', () => {
+    navbarLinks.classList.toggle('active');
+    hero.classList.toggle('menuactive');
+  });
 
-    const searchBar = document.getElementsByClassName('search-bar')[0];
-    //Show the search bar when the search link is pressed
-    document.getElementById('search-link').addEventListener('click',()=>{
-      searchBar.classList.toggle('active');
-      document.getElementById('searchbox').focus();
-    });
+  const searchBar = document.getElementsByClassName('search-bar')[0];
+  //Show the search bar when the search link is pressed
+  document.getElementById('search-link').addEventListener('click', () => {
+    searchBar.classList.toggle('active');
+    document.getElementById('searchbox').focus();
+  });
 
-    //Close the search bar
-    document.getElementById('searchbutton').addEventListener('click', ()=>{
-      searchStr = document.getElementById('searchbox').value;
-      redraw();
-    });
+  //Close the search bar
+  document.getElementById('searchbutton').addEventListener('click', () => {
+    searchStr = document.getElementById('searchbox').value;
+    redraw();
+  });
 
-    //Close the search bar
-    document.getElementById('closesearchbutton').addEventListener('click', ()=>{
-      searchStr = "";
-      searchBar.classList.remove('active');
-      redraw();
-    });
+  //Close the search bar
+  document.getElementById('closesearchbutton').addEventListener('click', () => {
+    searchStr = "";
+    searchBar.classList.remove('active');
+    redraw();
+  });
 
-    //Close the cookies message
-    document.getElementById('acceptCookies').addEventListener('click', ()=>{
-      setCookie('cookieMessageSeen', true);
-      document.getElementById('cookieMessage').style.display = 'none';
-    });
+  //Close the cookies message
+  document.getElementById('acceptCookies').addEventListener('click', () => {
+    setCookie('cookieMessageSeen', true);
+    document.getElementById('cookieMessage').style.display = 'none';
+  });
 
-    if(getCookie("cookieMessageSeen") == "true"){
-      document.getElementById('cookieMessage').style.display = 'none';
-    }
-    initProducts(redraw);
+  if (getCookie("cookieMessageSeen") == "true") {
+    document.getElementById('cookieMessage').style.display = 'none';
   }
+  initProducts(redraw);
+
+  /** Searching for max price product to set the price range */
+  max_price_find(productDetails);
+  
+}
 
 
-  /*
-  * When changing the page, you should make sure that each adjust button has exactly one click event
-  * (otherwise it might trigger multiple times)
-  * So this function loops through each adjustment button and removes any existing event listeners
-  * Then it adds another event listener
-  */
-  function resetListeners(){
-    var elements = document.getElementsByClassName("adjustUp");
-    var eIn;
-    for(eIn = 0; eIn < elements.length; eIn++){
-      elements[eIn].removeEventListener("click",increment);
-      elements[eIn].addEventListener("click",increment);
-    }
-    elements = document.getElementsByClassName("adjustDown");
-    for(eIn = 0; eIn < elements.length; eIn++){
-      elements[eIn].removeEventListener("click",decrement);
-      elements[eIn].addEventListener("click",decrement);
-    }
-    elements = document.getElementsByClassName("buyInput");
-    for(eIn = 0; eIn < elements.length; eIn++){
-      elements[eIn].removeEventListener("change",inputchange);
-      elements[eIn].addEventListener("change",inputchange);
-    }
-    elements = document.getElementsByClassName("addToBasket");
-    for(eIn = 0; eIn < elements.length; eIn++){
-      elements[eIn].removeEventListener("click",increment);
-      elements[eIn].addEventListener("click",increment);
+/*
+* When changing the page, you should make sure that each adjust button has exactly one click event
+* (otherwise it might trigger multiple times)
+* So this function loops through each adjustment button and removes any existing event listeners
+* Then it adds another event listener
+*/
+function resetListeners() {
+  var elements = document.getElementsByClassName("adjustUp");
+  var eIn;
+  for (eIn = 0; eIn < elements.length; eIn++) {
+    elements[eIn].removeEventListener("click", increment);
+    elements[eIn].addEventListener("click", increment);
+  }
+  elements = document.getElementsByClassName("adjustDown");
+  for (eIn = 0; eIn < elements.length; eIn++) {
+    elements[eIn].removeEventListener("click", decrement);
+    elements[eIn].addEventListener("click", decrement);
+  }
+  elements = document.getElementsByClassName("buyInput");
+  for (eIn = 0; eIn < elements.length; eIn++) {
+    elements[eIn].removeEventListener("change", inputchange);
+    elements[eIn].addEventListener("change", inputchange);
+  }
+  elements = document.getElementsByClassName("addToBasket");
+  for (eIn = 0; eIn < elements.length; eIn++) {
+    elements[eIn].removeEventListener("click", increment);
+    elements[eIn].addEventListener("click", increment);
+  }
+}
+
+
+//When the input changes, add a 'bought' class if more than one is added
+function inputchange(ev) {
+  var thisID = ev.target.parentElement.closest(".card__content").getAttribute("data-num");
+  changeQuantity(thisID, ev.target.parentElement.closest(".shop-product-buying").getElementsByTagName("input")[0].value);
+}
+
+/*
+* Change the quantity of the product with productID
+*/
+function changeQuantity(productID, newQuantity) {
+  basket[productID] = newQuantity;
+  if (newQuantity == 0)
+    delete basket[productID];
+  document.querySelector(".buyInput[data-num='" + productID + "']").value = newQuantity;
+  refreshBasket();
+}
+
+//Add 1 to the quantity
+function increment(ev) {
+  var thisID = ev.target.parentElement.closest(".card__content").getAttribute("data-num");
+  if (basket[thisID] === undefined) {
+    basket[thisID] = 0;
+  }
+  changeQuantity(thisID, parseInt(basket[thisID]) + 1);
+}
+
+//Subtract 1 from the quantity
+function decrement(ev) {
+  var thisID = ev.target.parentElement.closest(".card__content").getAttribute("data-num");
+  if (basket[thisID] === undefined) {
+    changeQuantity(thisID, 0);
+  } else {
+    if (basket[thisID] > 0) {
+      changeQuantity(thisID, parseInt(basket[thisID]) - 1);
     }
   }
+}
 
+function filterFunction(a) {
 
-  //When the input changes, add a 'bought' class if more than one is added
-  function inputchange(ev){
-    var thisID = ev.target.parentElement.closest(".card__content").getAttribute("data-num");
-    changeQuantity(thisID,ev.target.parentElement.closest(".shop-product-buying").getElementsByTagName("input")[0].value);
-  }
-
-  /*
-  * Change the quantity of the product with productID
-  */
-  function changeQuantity(productID, newQuantity){
-    basket[productID] = newQuantity;
-    if(newQuantity == 0)
-      delete basket[productID];
-    document.querySelector(".buyInput[data-num='"+productID+"']").value = newQuantity;
-    refreshBasket();
-  }
-
-  //Add 1 to the quantity
-  function increment(ev){
-    var thisID = ev.target.parentElement.closest(".card__content").getAttribute("data-num");
-    if(basket[thisID] === undefined){
-      basket[thisID] = 0;
-    }
-    changeQuantity(thisID,parseInt(basket[thisID])+1);
-  }
-
-  //Subtract 1 from the quantity
-  function decrement(ev){
-    var thisID = ev.target.parentElement.closest(".card__content").getAttribute("data-num");
-    if(basket[thisID] === undefined){
-      changeQuantity(thisID,0);
-    }else{
-      if(basket[thisID] > 0){
-        changeQuantity(thisID,parseInt(basket[thisID])-1);
-      }
-    }
-  }
-
-  function filterFunction(a){
-
-    /** Without any filter */
-    return true;
-
-
-    /*Filter based on Popularity*/
-    // return a.name.toLowerCase().includes(searchStr.toLowerCase());
-
-    /** Filter based on Types. */
-    // return a.type == 'veg';
-    // return a.type == 'fruit';
-    // return a.type == 'other';
-    // return a.type == 'dairy';
-    
-
-    /** Price range filter */
-    // if (100 < a.price && a.price < 200)
-    // {
-    //   return true;
-    // }
-
-    /** combination of price and type */
-    // if (100 < a.price && a.price < 200 && a.type == "fruit")
-    // {
-    //   return true;
-    // }
-  }
-
-  // Fixed this so it now sorts by price
-  function sortFunction(a,b)
+  /** Checking global vaiable before filter */
+  // console.log("filter_options : "+ filter_options);
+  // console.log("filter_price : "+ filter_maxprice);
+  // console.log("filter_price : "+ parseInt(filter_maxprice));
+  
+  if(filter_options == "veg")
   {
-
-    /** Sorting based on popularity */
-    // return a.name.toLowerCase().includes(searchStr.toLowerCase());
-
-
-    // /** Sorting the product by price Low to High*/
-    // return a.price - b.price;
-
-    // /** Sorting the product by price High to Low*/
-    // return b.price - a.price;
-
-    // /** Sorting the product by name A to Z*/
-    if(a.name < b.name) 
+    /** combination of price and type */
+    if (a.price < parseInt(filter_maxprice) && a.type == "veg")
     {
+      return true;
+    }
+  }
+  else if(filter_options == "fruit")
+  {
+    /** combination of price and type */
+    if (a.price < parseInt(filter_maxprice) && a.type == "fruit")
+    {
+      return true;
+    }
+  }
+  else if(filter_options == "dairy")
+  {
+    /** combination of price and type */
+    if (a.price < parseInt(filter_maxprice) && a.type == "dairy")
+    {
+      return true;
+    }
+  }
+  else if(filter_options == "other")
+  {
+    /** combination of price and type */
+    if (a.price < parseInt(filter_maxprice) && a.type == "other")
+    {
+      return true;
+    }
+  }
+  else
+  {
+    return true;
+  }
+}
+
+// Fixed this so it now sorts by price
+function sortFunction(a, b) {
+  /** checking for global variable before sorting */
+  if (sort_options == "HtoL") {
+    /** Sorting the product by price High to Low*/
+    return b.price - a.price;
+  }
+  else if (sort_options == "LtoH") {
+    /** Sorting the product by price Low to High*/
+    return a.price - b.price;
+  }
+  else if (sort_options == "popular") {
+    /** Sorting based on popularity */
+    return a.name.toLowerCase().includes(searchStr.toLowerCase());
+  }
+  else if (sort_options == "ZtoA") {
+    /** Sorting the product by name Z to A*/
+    if (a.name < b.name) {
+      return 1;
+    }
+    if (a.name > b.name) {
       return -1;
     }
-    if(a.name > b.name) 
-    {
+    return 0;
+  }
+  else {
+    /** Sorting the product by name A to Z*/
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
       return 1;
     }
     return 0;
-
-    // /** Sorting the product by name Z to A*/
-    // if(a.name < b.name) 
-    // {
-    //   return 1;
-    // }
-    // if(a.name > b.name) 
-    // {
-    //   return -1;
-    // }
-    // return 0;
-
   }
 
-  //Redraw all products based on the card template
-  function redraw(){
-    
-    //Reset the product list (there are possibly more efficient ways of doing this, but this is simplest)
-    document.querySelector('.productList').innerHTML = '';
+}
 
-    var shownProducts = productDetails.filter(filterFunction);
 
-    shownProducts.sort(sortFunction);
 
-    var numProducts = shownProducts.length;
-    
-    for(var i = 0; i < numProducts; i++){
-      var cardHTML = cardTemplate.replaceAll("[EVEGPRODUCT#]",shownProducts[i].productID);
-      var thisProduct = document.createElement("div");
-      thisProduct.innerHTML = cardHTML;
-      document.querySelector('.productList').appendChild(thisProduct.firstChild);
-    }
 
-    document.querySelectorAll(".shop-product-details").forEach(function(element){
-      var field = element.getAttribute("data-field");
-      var num = element.getAttribute("data-num");
-      switch(field){
-        case "title":
-          element.innerText = productDetails[num].name;
-          break;
-        case "img":
-          element.innerHTML = "<span class=\"imgspacer\"></span><img src=\"images/"+productDetails[num].image + "\"></img>";
-          break;
-        case "price":
-          element.innerHTML = "<span>£"+(productDetails[num].price/100).toFixed(2)+"</span>";
-          break;
-        case "units":
-          element.innerHTML = "<span>"+productDetails[num].packsize + " " + productDetails[num].units+"</span>";
-          break;
-      }
+//Redraw all products based on the card template
+function redraw() {
 
-    });
-    resetListeners();
-    updateQuantityInputs();
-  }
-  
-  window.addEventListener("load", init);
+  //Reset the product list (there are possibly more efficient ways of doing this, but this is simplest)
+  document.querySelector('.productList').innerHTML = '';
 
-  function updateQuantityInputs(){
-    for(let buyInput of document.querySelectorAll(".buyInput")){
-      let quantity = basket[buyInput.getAttribute("data-num")];
-      if(isNaN(quantity))
-        quantity = 0;
+  var shownProducts = productDetails.filter(filterFunction);
 
-      buyInput.value = quantity;
-    }
+  shownProducts.sort(sortFunction);
+
+  var numProducts = shownProducts.length;
+
+  for (var i = 0; i < numProducts; i++) {
+    var cardHTML = cardTemplate.replaceAll("[EVEGPRODUCT#]", shownProducts[i].productID);
+    var thisProduct = document.createElement("div");
+    thisProduct.innerHTML = cardHTML;
+    document.querySelector('.productList').appendChild(thisProduct.firstChild);
   }
 
-  //Recalculate basket
-  function refreshBasket(){
-    let total = 0;
-    for(const productID in basket){
-      let quantity = basket[productID];
-      let price = productDetails[productID].price;
-      total = total + (price * quantity);
+  document.querySelectorAll(".shop-product-details").forEach(function (element) {
+    var field = element.getAttribute("data-field");
+    var num = element.getAttribute("data-num");
+    switch (field) {
+      case "title":
+        element.innerText = productDetails[num].name;
+        break;
+      case "img":
+        element.innerHTML = "<span class=\"imgspacer\"></span><img src=\"images/" + productDetails[num].image + "\"></img>";
+        break;
+      case "price":
+        element.innerHTML = "<span>£" + (productDetails[num].price / 100).toFixed(2) + "</span>";
+        break;
+      case "units":
+        element.innerHTML = "<span>" + productDetails[num].packsize + " " + productDetails[num].units + "</span>";
+        break;
     }
-    setCookie('basket', JSON.stringify(basket));
-    try{
-      document.querySelector("#basketNumTotal").innerHTML = (total / 100).toFixed(2);
-    }catch(e){
-      
-    }
-    return total;
-  }
 
+  });
+  resetListeners();
+  updateQuantityInputs();
+}
+
+window.addEventListener("load", init);
+
+function updateQuantityInputs() {
+  for (let buyInput of document.querySelectorAll(".buyInput")) {
+    let quantity = basket[buyInput.getAttribute("data-num")];
+    if (isNaN(quantity))
+      quantity = 0;
+
+    buyInput.value = quantity;
+  }
+}
+
+//Recalculate basket
+function refreshBasket() {
+  let total = 0;
+  for (const productID in basket) {
+    let quantity = basket[productID];
+    let price = productDetails[productID].price;
+    total = total + (price * quantity);
+  }
+  setCookie('basket', JSON.stringify(basket));
+  try {
+    document.querySelector("#basketNumTotal").innerHTML = (total / 100).toFixed(2);
+  } catch (e) {
+
+  }
+  return total;
+}
+
+
+
+function sortHtoL() {
+  sort_options = "HtoL";
+  redraw();
+}
+
+function sortLtoH() {
+  sort_options = "LtoH";
+  redraw();
+}
+
+function sortAtoZ() {
+  sort_options = "AtoZ";
+  redraw();
+}
+
+function sortZtoA() {
+  sort_options = "ZtoA";
+  redraw();
+}
+function sortpopular() {
+  sort_options = "popular"
+  redraw();
+}
+
+function filter_all()
+{
+  filter_options = "all";
+  redraw();
+}
+
+function filter_veg()
+{
+  filter_options = "veg";
+  redraw();
+}
+
+function filter_fruit()
+{
+  filter_options = "fruit";
+  redraw();
+}
+
+function filter_dairy()
+{
+  filter_options = "dairy";
+  redraw();
+}
+
+function filter_other()
+{
+  filter_options = "other";
+  redraw();
+}
+
+function price_range()
+{
+  var max_price = document.getElementById("range_bar_1");
+  var max_price_display = document.getElementById("max_value");
+  filter_maxprice = max_price.value;
+  max_price_display.innerHTML = "Max : £"+ (filter_maxprice/100); 
+  redraw();
+}
+
+function max_price_find()
+{
+  var temp_price = 0;
+  for(var i = 0; i < productDetails.length; i++)
+  {
+    if(temp_price < productDetails[i].price)
+    {
+      temp_price = productDetails[i].price;
+    }
+  }
+  filter_maxprice = temp_price;
+  var max_price_display = document.getElementById("max_value");
+  max_price_display.innerHTML = "Max : £"+ ((filter_maxprice/100)+1);  
+  var max_price = document.getElementById("range_bar_1");
+  max_price.max =  (filter_maxprice+100);
+}

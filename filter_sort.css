@@ -34,9 +34,9 @@
     display: none;
     float: right;
     position: fixed;
-    margin-top: -2%;
+    margin-top: 3.5%;
     margin-left: 85%;
-    color: black;
+    color: rgb(69, 69, 69);
     border-radius: 10px;
     z-index: 10;
     animation-name: mybox;
@@ -61,8 +61,8 @@
     padding: 10px;
     text-align: left;
     font-size: 16px;
-    color:white;
-    background-color: rgb(56, 55, 55);
+    color:rgb(66, 87, 51);
+    background-color: rgb(189, 220, 167);
     border-radius: 5px;
     letter-spacing: 0.5px;
     
@@ -74,7 +74,7 @@
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    color: black;
+    color: rgb(69, 69, 69);
     /* color:red; */
   }
   #filter_type{

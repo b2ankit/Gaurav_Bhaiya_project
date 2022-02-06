@@ -13,8 +13,8 @@ function init(){
 //When changing the page, you should make sure that each adjust button has exactly one click event
 //(otherwise it might trigger multiple times)
 function resetListeners(){
-document.getElementById("paycreditcard").removeEventListener("click",showCreditCardPage);
-document.getElementById("paycreditcard").addEventListener('click',showCreditCardPage);
+// document.getElementById("paycreditcard").removeEventListener("click",showCreditCardPage);
+// document.getElementById("paycreditcard").addEventListener('click',showCreditCardPage);
 }
 
 //When the pay by credit card link is clicked, show the creditcard.html in an iframe
@@ -36,6 +36,7 @@ function calculateBasket(){
   let total = 0;
   let numOfItems = 0;
   let basket = JSON.parse(getCookie("basket"));
+  console.log("basket " + getCookie("basket"));
   document.querySelector('.checkoutList').innerHTML = '';
 
   // Create a title row with four headers, and add it to the checkoutList HTML element

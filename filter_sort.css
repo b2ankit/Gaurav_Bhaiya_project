@@ -16,8 +16,8 @@
       border-radius: 50%;
       background-color: rgb(224, 20, 133);
       position: fixed;
-      bottom: 8%;
-      right: 5%;
+      bottom: 3%;
+      right: 1%;
       opacity: 1;
   }
   .filter-sort-container .fa-filter{
@@ -27,18 +27,18 @@
       margin-top: 12px;
   }
   #mybox{
-    width: 25%;
+    width: 15%;
     height: auto;
     background-color:whitesmoke;
     /* display: block; */
     display: none;
     float: right;
     position: fixed;
-    margin-top: -5%;
-    margin-right: 7%;
+    margin-top: -2%;
+    margin-left: 85%;
     color: black;
     border-radius: 10px;
-    z-index: 1000;
+    z-index: 10;
     animation-name: mybox;
     animation-duration: 1s;
   }

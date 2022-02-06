@@ -1,36 +1,34 @@
 /*Common CSS to be shown on all versions (mobile/desktop)*/
 .productBasketDiv{
-    width: 60%;
-    margin-left: 20%;
-}
-
-.productBasketDiv input
-{
-    position: relative;
-    width: 25%;
-    margin-bottom: 10px;
-    text-align: center;
-
-}
-
-.productBasketDiv .adjustUp
-{
-    margin-left: 0px;
+    width: 8em;
 }
 
 button{
     background-color: var(--colour-2);
-    color:var(--colour-1);
-    font-size: 40%;
-    margin-left: 10%;
+    color:var(--colour-3);
+    border: none;
+    height: 2.5em;
+    text-align: center;
+    display: inline-block;
+    border-radius: 10px;
 }
 
+button:hover {
+    background-color: var(--colour-6);
+}
+
+button:disabled {
+    background: var(--colour-12);
+  }
+
 .shop-product-img img{
-    width: 8rem;
-    height: 8rem;
+    width: 90%;
+    height: 5em;
     object-fit: cover;
     vertical-align: middle;
-    border-radius: 5px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .shop-product-desc{
     display:none;
@@ -56,6 +54,7 @@ button{
     display:flex;
     font-size: large;
     justify-content: flex-end;
+    background-color: var(--colour-1);
     /* padding-right: 1em; */
 }
 
@@ -96,7 +95,9 @@ html{
     --colour-5: hsl(var(--colour-5-h), var(--colour-5-s), var(--colour-5-l));
     --colour-6: hsl(var(--colour-6-h), var(--colour-6-s), var(--colour-6-l));
     --colour-7: hsl(var(--colour-7-h), var(--colour-7-s), var(--colour-7-l));
-
+    --colour-11: hsl(var(--colour-11-h), var(--colour-11-s), var(--colour-11-l));
+    --colour-12: hsl(var(--colour-12-h), var(--colour-12-s), var(--colour-12-l));
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 
@@ -113,17 +114,14 @@ html{
 }
 
 .productList{
-    margin-bottom: 2rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    padding-top:2rem;
-    padding-bottom:2rem;
-    padding-left:2rem;
-    padding-right:2rem;
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px;
 }
 
 .navbar{
-    height: 4em;
+    height: 3em;
+    background-color: var(--colour-1);
 }
 
 .navbar,li ul {
@@ -134,14 +132,20 @@ html{
     padding-top: 0.5em;
 }
 
+.checkoutInfo {
+    width: 70%;
+    padding-left: 32%;
+    margin: 0 auto;
+}
+
 .about{
 
     clear: both;
     height:20px;
     padding: 2em;
     font-size: 20px;
-    font-weight: bold;
     text-align: center;
+    color: #555;
 }
 
 
@@ -160,8 +164,10 @@ html{
 }
 
 .spacer{
-    flex-grow: 1;
+    flex: 1;
+    background-color: var(--colour-1);
     /* width: 10%; */
+    height: 85%;
 }
 
 .navbar-links li{
@@ -169,7 +175,7 @@ html{
 }
 
 .navbar-links li a, .subnavbar-links li a{
-    color: var(--colour-1);
+    color: var(--colour-2);
     text-decoration: none;
     font-size:1.5em;
     font-weight: 600;
@@ -194,32 +200,7 @@ html{
     position:absolute;
     display: flex;
 }
-.toggle-wrapper{
-    position:absolute;
-    top: .75rem;
-    right: 1rem;
-    background: rgba(0,0,0,0.25) ;
-    /* background: black; */
-    padding: 1em;
-}
-.toggle-button{
-    display:none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-}
 
-.toggle-button .bar{
-    height: 3px;
-    width: 100%;
-    background-color:white;
-    border-radius: 10px;
-}
-
-.toggle-wrapper{
-    display: none;
-}
 #searchDesc{
     margin-top: 1em;
     font-size: 2em;
@@ -240,23 +221,27 @@ html{
     /* color: var(--colour-6); */
 }
 
-/* .adjustDiv
-{
-    display: block;
-} */
-
 #basket{
     position:absolute;
     display:none;
     width: 20em;
     height: var(--hero-height);
-    background-color: var(--colour-1);
     opacity: 1;
+    transition-duration: 0.4s;
+    background-color: var(--colour-1);
+}
+
+#basket:hover{
+    background-color: var(--colour-1);
+    color: white;
 }
 
 .hero{
     text-align: center;
     height: var(--hero-height);
+    background-color: var(--colour-1);
+    position: fixed;
+    width: 100%;
 }
 
 .hero div.title{
@@ -275,33 +260,43 @@ html{
 }
 
 #cookieMessage{
+    width: 45%;
     position: fixed;
     right: 0px;
     bottom: 0px;
-    background-color: hsl(var(--colour-4-h), var(--colour-4-s), var(--colour-4-l));
-    padding: 20px;
-    display: none;
+    background-color: var(--colour-1);
+    padding: 2em;
+    margin: 20px;
+    border-radius: 10px;
+    /* display: none; */
 }
 
 #acceptCookies{
     font-size: 100%;
     margin-top: 2rem;
+    color: white;
+    font-weight: bold;
 }
+
+#acceptCookies:hover{
+    color: var(--colour-2);
+}
+
 p{
     font-size: 150%;
 }
 
 body{
-    background-color: var(--colour-2);
+    background-color: var(--colour-3);
     margin:0;
     padding: 0;
 }
 
 a{
-    color: var(--colour-4);
+    color: var(--colour-2);
 }
 a:visited{
-    color: var(--colour-5);
+    color: var(--colour-2);
 }
 
 
@@ -344,3 +339,41 @@ form.customerDetails button{
     text-align: right;
 }
 
+.itemCountCircle {
+    border-radius: 50%;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 6px;
+    padding: 1px;
+    background: var(--colour-1);
+    border: 2px solid var(--colour-2);
+    color: #000;
+    text-align: center;
+    font: 14px Arial, sans-serif;
+  }
+
+.alert{
+    position: fixed;
+    right: 0;
+    top: 160px;
+    padding: 15px;
+    background-color: white;
+    border: 3px solid var(--colour-2);
+    border-radius: 25px;
+    color: var(--colour-2);
+    visibility: hidden;
+    /*animation: hideAnimation 0s ease-in 2s;
+    animation-fill-mode: forwards;*/
+    z-index: 20;
+    /*width: 100px;*/
+    opacity: .8;
+    align-items: center;
+    text-align: center;
+}
+
+@keyframes hideAnimation {
+    to {
+      visibility: hidden;
+    }
+  }

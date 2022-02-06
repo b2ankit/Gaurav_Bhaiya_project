@@ -1,28 +1,44 @@
 html{
 
-/*Hunter Green*/
-  --colour-1-h: 95;
-  --colour-1-s: 26%;
-  --colour-1-l: 27%;
+/* OUR Nice pale green*/
+/* To be used as navbar background colour */
+--colour-1-h: 96;
+--colour-1-s: 43%;
+--colour-1-l: 76%;
+
+/* OUR Very dark green */
+/* To be used for links/text?? */
+--colour-2-h: 95;
+--colour-2-s: 26%;
+--colour-2-l: 27%;
 
 
-/*Light Periwinkle*/
-  --colour-2-h: 233;
-  --colour-2-s: 20%;
-  --colour-2-l: 83%;
-
-
-/*Safety Orange Blaze Orange*/
-  --colour-3-h: 22;
+/* OUR White (clearly distinct from any other white) */
+/* Currently used as page background colour (body) */
+  --colour-3-h: 0;
   --colour-3-s: 100%;
-  --colour-3-l: 50%;
+  --colour-3-l: 100%;
 
 
-/*Field Drab*/
-  --colour-4-h: 39;
-  --colour-4-s: 32%;
-  --colour-4-l: 32%;
+/* OUR Pale blue*/
+/* Not sure where this is to be used */
+  --colour-4-h: 171;
+  --colour-4-s: 45%;
+  --colour-4-l: 94%;
 
+/* Dark grey */
+/* Price/unit text colour */
+  --colour-11-h: 0;
+  --colour-11-s: 0%;
+  --colour-11-l: 27.1%;
+
+/* Light grey */
+/* Price/unit text colour */
+  --colour-12-h: 0;
+  --colour-12-s: 0%;
+  --colour-12-l: 54.5%;
+    
+/* THEIR colours: ---------------------------- */
 
 /*Black Chocolate*/
   --colour-5-h: 60;
@@ -58,17 +74,6 @@ html{
   --colour-10-h: 233;
   --colour-10-s: 20%;
   --colour-10-l: 83%;
-
-
-  --colour-1-l: 20%;
-
-  --colour-2-l: 90%;
-
-  --colour-3-l: 30%;
-
-  --colour-4-l: 70%;
-
-  --colour-5-l: 70%;
 
 }
 

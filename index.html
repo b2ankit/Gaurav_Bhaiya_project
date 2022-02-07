@@ -96,18 +96,14 @@
             <table id="filter_type">
               <tr>
                 <td>
-                  <form action="#">
-                    <input onclick="filter_all()" type="radio" id="all" name="type" value="all" checked="checked">
-                    <label for="all">All</label><br>
-                    <input onclick="filter_veg()" type="radio" id="veg" name="type" value="veg">
+                    <input onclick="filter_veg()" type="checkbox" id="veg" name="type" value="veg">
                     <label for="veg">Vegetables</label><br>
-                    <input onclick="filter_fruit()" type="radio" id="fruit" name="type" value="fruit">
+                    <input onclick="filter_fruit()" type="checkbox" id="fruit" name="type" value="fruit">
                     <label for="fruit">Fruits</label><br>
-                    <input onclick="filter_dairy()" type="radio" id="dairy" name="type" value="dairy">
+                    <input onclick="filter_dairy()" type="checkbox" id="dairy" name="type" value="dairy">
                     <label for="dairy">Dairy products</label><br>
-                    <input onclick="filter_other()" type="radio" id="other" name="type" value="other">
+                    <input onclick="filter_other()" type="checkbox" id="other" name="type" value="other">
                     <label for="other">Others</label><br>
-                  </form>
                 </td>
               </tr>
             </table>
@@ -127,9 +123,6 @@
         <tr>
           <th>Sort By</th>
         </tr>
-        <!-- <tr>
-          <td id="hovereffect" onclick="sortpopular()">Popularity</td>
-        </tr> -->
         <tr>
           <td id="hovereffect" onclick="sortHtoL()">High to Low</td>
         </tr>

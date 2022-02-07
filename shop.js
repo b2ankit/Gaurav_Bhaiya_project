@@ -1,11 +1,11 @@
 let productDetails = {};
 let searchStr = "";
 let basket = {};
-// filter and sorting variable intialisation start
+/** filter and sorting variable intialisation : Start */
 let sort_options = "";
-let filter_options = "";
 let filter_maxprice = "";
-// filter and sorting variable intialisation end
+let filter_options_arr = [];
+/** filter and sorting variable intialisation : End */
 
 //Each product is based on a 'card'; a box that contains information about that product.
 //You can change the card template here. The [EVEGPRODUCT#] will always be subsituted for
@@ -76,6 +76,7 @@ function init() {
     document.getElementById("cookieMessage").style.display = "none";
   }
   initProducts(redraw);
+
   /** Searching for max price product to set the price range */
   max_price_find(productDetails);
 }
@@ -238,84 +239,59 @@ function addToBasket(ev) {
 
 function filterFunction(a) {
 
+  /** Search base filter */
   if(searchStr != "")
   {
     return a.name.toLowerCase().includes(searchStr.toLowerCase());
   }
-    
-  
-  if(filter_options == "veg")
-  {
-    /** combination of price and type */
-    if (a.price < parseInt(filter_maxprice) && a.type == "veg")
-    {
-      return true;
-    }
-  }
-  else if(filter_options == "fruit")
-  {
-    /** combination of price and type */
-    if (a.price < parseInt(filter_maxprice) && a.type == "fruit")
-    {
-      return true;
-    }
-  }
-  else if(filter_options == "dairy")
-  {
-    /** combination of price and type */
-    if (a.price < parseInt(filter_maxprice) && a.type == "dairy")
-    {
-      return true;
-    }
-  }
-  else if(filter_options == "other")
-  {
-    /** combination of price and type */
-    if (a.price < parseInt(filter_maxprice) && a.type == "other")
-    {
-      return true;
-    }
-  }
-  else if(filter_options == "" && filter_maxprice !="")
-  {
-   
-    if(a.price <parseInt(filter_maxprice))
-    {
-      return true;
-    }
-  }
-  else if(filter_options == "all" && filter_maxprice !="")
-  {
-   
-    if(a.price <parseInt(filter_maxprice))
-    {
-      return true;
-    }
-  }
-  else
+
+
+  /** Filter logic whenever type and price is not selected  */
+  if(filter_options_arr.length == 0 && filter_maxprice == "")
   {
     return true;
+  }
+  /** Filter logic whenever type is not selected but price is selected  */
+  else if(filter_options_arr.length == 0 && filter_maxprice !="")
+  {
+   
+    if(a.price <parseInt(filter_maxprice))
+    {
+      return true;
+    }
+  }
+  /** Filter logic whenever both type and price is selected  */
+  else
+  {
+    for(var i=0;i<filter_options_arr.length;i++)
+    {
+     
+      if(a.type==filter_options_arr[i]&&a.price < parseInt(filter_maxprice))
+      {
+        return true;
+      }
+    }
+
   }
 }
 
 
-// Fixed this so it now sorts by price
 function sortFunction(a, b) {
-  /** checking for global variable before sorting */
-  if (sort_options == "HtoL") {
-    /** Sorting the product by price High to Low*/
+
+  /** Sorting the product by price High to Low*/
+  if (sort_options == "HtoL") 
+  {
     return b.price - a.price;
   }
-  else if (sort_options == "LtoH") {
-    /** Sorting the product by price Low to High*/
+  /** Sorting the product by price Low to High*/
+  else if (sort_options == "LtoH") 
+  {
     return a.price - b.price;
   }
-  // else if (sort_options == "popular") {
-  //   /** Sorting based on popularity */
-  //   return a.name.toLowerCase().includes(searchStr.toLowerCase());
-  // }
-  else if (sort_options == "ZtoA") {
-    /** Sorting the product by name Z to A*/
+  /** Sorting the product by name Z to A*/
+  else if (sort_options == "ZtoA") 
+  {
+    
     if (a.name < b.name) {
       return 1;
     }
@@ -324,8 +300,10 @@ function sortFunction(a, b) {
     }
     return 0;
   }
-  else {
-    /** Sorting the product by name A to Z*/
+  /** Sorting the product by name A to Z*/
+  else 
+  {
+    
     if (a.name < b.name) {
       return -1;
     }
@@ -429,7 +407,8 @@ function refreshBasket() {
   } catch (e) {}
   return total;
 }
-// sorting/filtering functions definition
+
+/** Sorting functions definition : Start*/ 
 function sortHtoL() {
   sort_options = "HtoL";
   redraw();
@@ -449,41 +428,73 @@ function sortZtoA() {
   sort_options = "ZtoA";
   redraw();
 }
-// function sortpopular() {
-//   sort_options = "popular"
-//   redraw();
-// }
+/** Sorting functions definition : End*/
 
-function filter_all()
-{
-  filter_options = "all";
-  redraw();
-}
 
+/** Filtering functions definition : Start*/
 function filter_veg()
 {
-  filter_options = "veg";
+  var checkBox_veg = document.getElementById("veg");
+  if(checkBox_veg.checked == true)
+  {
+    filter_options_arr.push("veg");
+  }
+  else
+  {
+    var index = filter_options_arr.indexOf("veg");
+    filter_options_arr.splice(index,1);
+  }
   redraw();
 }
 
 function filter_fruit()
 {
-  filter_options = "fruit";
+  var checkBox_veg = document.getElementById("fruit");
+  if(checkBox_veg.checked == true)
+  {
+    filter_options_arr.push("fruit");
+  }
+  else
+  {
+    var index = filter_options_arr.indexOf("fruit");
+    filter_options_arr.splice(index,1);
+  }
   redraw();
 }
 
 function filter_dairy()
 {
-  filter_options = "dairy";
+  var checkBox_veg = document.getElementById("dairy");
+  if(checkBox_veg.checked == true)
+  {
+    filter_options_arr.push("dairy");
+  }
+  else
+  {
+    var index = filter_options_arr.indexOf("dairy");
+    filter_options_arr.splice(index,1);
+  }
   redraw();
 }
 
 function filter_other()
 {
-  filter_options = "other";
+  var checkBox_veg = document.getElementById("other");
+  if(checkBox_veg.checked == true)
+  {
+    filter_options_arr.push("other");
+  }
+  else
+  {
+    var index = filter_options_arr.indexOf("other");
+    filter_options_arr.splice(index,1);
+  }
   redraw();
 }
+/** Filtering functions definition : Start*/
 
+
+/** Logic to set the price range filter : Start*/
 function price_range()
 {
   var max_price = document.getElementById("range_bar_1");
@@ -492,7 +503,9 @@ function price_range()
   max_price_display.innerHTML = "Max : £"+ (filter_maxprice/100); 
   redraw();
 }
+/** Logic to set the price range filter : End*/
 
+/** Logic to find the maximun price product : Start*/
 function max_price_find()
 {
   var temp_price = 0;
@@ -509,3 +522,4 @@ function max_price_find()
   var max_price = document.getElementById("range_bar_1");
   max_price.max =  (filter_maxprice+100);
 }
+/** Logic to find the maximun price product : End*/

@@ -14,7 +14,8 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: rgb(224, 20, 133);
+      /* background-color: rgb(224, 20, 133); */
+      background-color: rgb(177, 228, 145);
       position: fixed;
       bottom: 3%;
       right: 1%;
@@ -25,6 +26,7 @@
       font-size: 28px;
       margin-left: 15px;
       margin-top: 12px;
+      color:rgb(69, 69, 69) ;
   }
   #mybox{
     width: 15%;
@@ -133,17 +135,90 @@
     background: rgb(69, 69, 69);
     cursor: pointer;
   }
+
+
+  /* The container_filter */
+.container_filter {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container_filter input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container_filter:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container_filter input:checked ~ .checkmark {
+  background-color: rgb(69, 69, 69);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container_filter input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container_filter .checkmark:after {
+  left: 5px;
+  top: 1px;
+  width: 3px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
   
 
   #min_value{
     margin: 0px 10px;
-    font-size: 15px;
+    font-size: 12px;
+    font-weight: 550;
    float: left;
   }
 
   #max_value{
     /* margin: 0px 10px; */
-    font-size: 15px;
+    font-size: 12px;
+    font-weight: 550;
     float: right;
   }
 
@@ -156,6 +231,8 @@
   .sort table th,td{
     padding: 5px;
     letter-spacing: 0.3px;
+    font-size: 12px;
+    font-weight: 550;
     /* background-color: rgb(221, 213, 213); */
   }
 

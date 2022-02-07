@@ -96,14 +96,33 @@
             <table id="filter_type">
               <tr>
                 <td>
-                    <input onclick="filter_veg()" type="checkbox" id="veg" name="type" value="veg">
+                    <!-- <input onclick="filter_veg()" type="checkbox" id="veg" name="type" value="veg">
                     <label for="veg">Vegetables</label><br>
                     <input onclick="filter_fruit()" type="checkbox" id="fruit" name="type" value="fruit">
                     <label for="fruit">Fruits</label><br>
                     <input onclick="filter_dairy()" type="checkbox" id="dairy" name="type" value="dairy">
                     <label for="dairy">Dairy products</label><br>
                     <input onclick="filter_other()" type="checkbox" id="other" name="type" value="other">
-                    <label for="other">Others</label><br>
+                    <label for="other">Others</label><br> -->
+                    <label class="container_filter">Vegetables
+                      <input onclick="filter_veg()" type="checkbox" id="veg" name="type" value="veg">
+                      <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container_filter">Fruits
+                      <input onclick="filter_fruit()" type="checkbox" id="fruit" name="type" value="fruit">
+                      <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container_filter">Dairy Products
+                      <input onclick="filter_dairy()" type="checkbox" id="dairy" name="type" value="dairy">
+                      <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container_filter">Others
+                      <input onclick="filter_other()" type="checkbox" id="other" name="type" value="other">
+                      <span class="checkmark"></span>
+                    </label>
                 </td>
               </tr>
             </table>

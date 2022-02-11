@@ -1,0 +1,247 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .page-container {
+    height: auto;
+    color: white;
+    cursor:pointer;
+  }
+
+  .page-container .filter-sort-container{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      /* background-color: rgb(224, 20, 133); */
+      background-color: var(--colour-1);
+      position: fixed;
+      bottom: 3%;
+      right: 1%;
+      opacity: 1;
+  }
+  .filter-sort-container .fa-filter{
+      position: relative;
+      font-size: 28px;
+      margin-left: 15px;
+      margin-top: 12px;
+      color:var(--colour-11) ;
+  }
+  #mybox{
+    width: 15%;
+    height: auto;
+    background-color:whitesmoke;
+    /* display: block; */
+    display: none;
+    float: right;
+    position: fixed;
+    margin-left: 85%;
+    color: var(--colour-11);
+    border-radius: 10px;
+    z-index: 10;
+    animation-name: mybox;
+    animation-duration: 1s;
+  }
+  @keyframes mybox {
+    from {opacity:0;}
+    to {opacity:1;}
+  }
+
+  .mymainbox table
+  {
+      position: relative;
+      width: 90%;
+      margin: 5%;
+      height: auto;
+      /* border: 2px solid black;       */
+  }
+
+  .mymainbox th{
+    /* border: 1px solid black; */
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    color:rgb(66, 87, 51);
+    background-color: var(--colour-1);
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    
+  }
+
+  .mymainbox .fliter td{
+    /* border: 1px solid black; */
+    padding: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--colour-11);
+    /* color:red; */
+  }
+  #filter_type{
+      /* background-color: brown; */
+      margin: 0;
+      padding: 0;
+  }
+  #filter_type form label{
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 20px;
+  }
+
+  #range_bar{
+    margin: 5px;
+    padding: 10px 0px;
+  
+  }
+
+  #range_bar_1{
+    width: 100%;
+    margin: 0px 00px;
+  
+   
+  }
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: var(--colour-2);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--colour-1);
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--colour-11);
+    cursor: pointer;
+  }
+
+
+  /* The container_filter */
+.container_filter {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container_filter input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: var(--colour-1);
+}
+
+/* On mouse-over, add a grey background color */
+.container_filter:hover input ~ .checkmark {
+  background-color: rgb(150, 150, 150);
+}
+
+/* When the checkbox is checked, add a blue background */
+.container_filter input:checked ~ .checkmark {
+  background-color: var(--colour-11);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container_filter input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container_filter .checkmark:after {
+  left: 5px;
+  top: 1px;
+  width: 3px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+  
+
+  #min_value{
+    margin: 0px 00px;
+    font-size: 12px;
+    font-weight: 550;
+   float: left;
+  }
+
+  #max_value{
+    /* margin: 0px 10px; */
+    font-size: 12px;
+    font-weight: 550;
+    float: right;
+  }
+
+  /* #range_bar span{
+    margin: 0px 20px;
+    font-size: 15px;
+    font-weight: 300;
+  } */
+
+  .sort table th,td{
+    padding: 5px;
+    letter-spacing: 0.3px;
+    font-size: 14px;
+    font-weight: 500;
+    /* background-color: rgb(221, 213, 213); */
+  }
+
+  .sort tr td {
+    cursor: pointer !important;
+  }
+
+  #hovereffect:hover{
+      background-color: rgb(221, 213, 213);
+  }
+
+  th, td {
+    cursor: default;
+  }

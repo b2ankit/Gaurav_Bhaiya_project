@@ -201,7 +201,7 @@ function addToBasket(ev) {
 
 
 function filterFunction(a) {
-  /** Search base filter */
+  /** Search and filter logic */
   if (searchStr != "") {
     if ((a.name.toLowerCase().includes(searchStr.toLowerCase()))) {
         for (var i = 0; i < filter_options_arr.length; i++) {
@@ -213,7 +213,6 @@ function filterFunction(a) {
     else {
       return false;
     }
-
   }
 
 
@@ -446,9 +445,7 @@ function filter_other() {
 /** Logic to set the price range filter : Start*/
 function price_range() {
   var max_price = document.getElementById("range_bar_1");
-  var max_price_display = document.getElementById("max_value");
   filter_maxprice = max_price.value;
-  max_price_display.innerHTML = "Max : £" + (filter_maxprice / 100);
   redraw();
 }
 /** Logic to set the price range filter : End*/
@@ -465,6 +462,32 @@ function max_price_find() {
   var max_price_display = document.getElementById("max_value");
   max_price_display.innerHTML = "Max : £" + ((filter_maxprice / 100));
   var max_price = document.getElementById("range_bar_1");
-  max_price.max = (filter_maxprice + 100);
+  max_price.max = (filter_maxprice);
+  /**calling function to find the maximun price product*/
+  min_product_price();
 }
 /** Logic to find the maximun price product : End*/
+
+/** Logic to find the minimum price product : Start*/
+function min_product_price() {
+  var temp_price = filter_maxprice;
+  for (var i = 0; i < productDetails.length; i++) {
+    if (temp_price > productDetails[i].price) {
+      temp_price = productDetails[i].price;
+    }
+  }
+  var min_price_display = document.getElementById("min_value");
+  min_price_display.innerHTML = "Min : £" + ((temp_price / 100));
+
+  set_the_price_cursor();
+}
+/** Logic to find the maximun price product : End*/
+
+/** Logic to set the price cursor at beginning : Start */
+function set_the_price_cursor()
+{
+  var rangeBullet_intial = document.getElementById("rs-bullet");
+  rangeBullet_intial.innerHTML = "£"+(filter_maxprice/100);
+  rangeBullet_intial.style.left = 160 + "px";  
+}
+/** Logic to set the price cursor at beginning : End */

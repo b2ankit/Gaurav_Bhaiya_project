@@ -37,7 +37,7 @@
     float: right;
     position: fixed;
     margin-left: 85%;
-    margin-top:-5% /*remove this. I have used for my System : Ankit*/
+    margin-top:-5% ;/*remove this. I have used for my System : Ankit*/
     color: var(--colour-11);
     border-radius: 10px;
     z-index: 10;
@@ -91,8 +91,8 @@
   }
 
   #range_bar{
-    margin: 5px;
-    padding: 10px 0px;
+    margin: 0px;
+    padding: 5px 0px;
   
   }
 
@@ -246,3 +246,24 @@
   th, td {
     cursor: default;
   }
+
+  .rs-label {
+    position: relative;
+    transform-origin: center center;
+    display: block;
+    width: 35px;
+    height: 35px;
+    background: var(--colour-1);
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    color:var(--colour-11);;
+    font-size: 10px;
+    left: attr(value);
+    transform: rotate(-50deg);
+}

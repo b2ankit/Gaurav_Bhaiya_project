@@ -10,3 +10,15 @@ function myFunction() {
     }
     
   }
+
+  var rangeBullet = document.getElementById("rs-bullet");
+  var rangeSlider = document.getElementById("range_bar_1");
+
+  rangeSlider.addEventListener("input", showSliderValue, false);
+
+  function showSliderValue() {
+    rangeBullet.innerHTML = "£"+(rangeSlider.value/100);
+    var bulletPosition = (rangeSlider.value/rangeSlider.max);
+    rangeBullet.style.left = (bulletPosition*160) + "px";  
+  }
+

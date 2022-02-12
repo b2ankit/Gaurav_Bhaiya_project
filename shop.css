@@ -41,12 +41,14 @@
     width: 2.5em;
     margin-left: 3px;
     margin-right: 3px;
+    cursor: pointer;
 }
 
 .adjustUp{
     width: 2.5em;
     margin-left: 3px;
     margin-right: 3px;
+    cursor: pointer;
 }
 
 .addToBasket{
@@ -54,6 +56,15 @@
     height: 1.7em;
     width: 60%;
     padding: 5px;
+    cursor: pointer;
+}
+
+.addToBasket:disabled {
+    cursor: default;
+}
+
+#emptybasketbutton, #backtoproductsbutton, #paybycreditcardbutton, #acceptCookies {
+    cursor: pointer;
 }
 
 h1{
@@ -82,7 +93,7 @@ input[type=number] {
 
 .menubutton {
     transition-duration: 0.4s;
-    background-color: var(--colour-1);
+    background-color: var(--colour-4);
     flex: 1;
 }
  
@@ -92,7 +103,8 @@ input[type=number] {
 }
 
 .welcome {
-    background-color: var(--colour-1);
-    flex: 1;
+    background-color: var(--colour-4);
+    color: #ffff;
+    
 }
  

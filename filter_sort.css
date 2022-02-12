@@ -15,7 +15,7 @@
       height: 50px;
       border-radius: 50%;
       /* background-color: rgb(224, 20, 133); */
-      background-color: rgb(177, 228, 145);
+      background-color: var(--colour-1);
       position: fixed;
       bottom: 3%;
       right: 1%;
@@ -26,7 +26,7 @@
       font-size: 28px;
       margin-left: 15px;
       margin-top: 12px;
-      color:rgb(69, 69, 69) ;
+      color:var(--colour-11) ;
   }
   #mybox{
     width: 15%;
@@ -36,9 +36,9 @@
     display: none;
     float: right;
     position: fixed;
-    margin-top: -f3.5%;
     margin-left: 85%;
-    color: rgb(69, 69, 69);
+    margin-top:-5% /*remove this. I have used for my System : Ankit*/
+    color: var(--colour-11);
     border-radius: 10px;
     z-index: 10;
     animation-name: mybox;
@@ -64,7 +64,7 @@
     text-align: left;
     font-size: 16px;
     color:rgb(66, 87, 51);
-    background-color: rgb(189, 220, 167);
+    background-color: var(--colour-1);
     border-radius: 5px;
     letter-spacing: 0.5px;
     
@@ -73,10 +73,10 @@
   .mymainbox .fliter td{
     /* border: 1px solid black; */
     padding: 5px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    color: rgb(69, 69, 69);
+    color: var(--colour-11);
     /* color:red; */
   }
   #filter_type{
@@ -98,7 +98,7 @@
 
   #range_bar_1{
     width: 100%;
-    margin: 0px 10px;
+    margin: 0px 00px;
   
    
   }
@@ -107,7 +107,7 @@
     width: 100%;
     height: 10px;
     border-radius: 5px;
-    background: rgb(198, 214, 187);
+    background: var(--colour-2);
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -124,7 +124,7 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: rgb(69, 69, 69);
+    background: var(--colour-1);
     cursor: pointer;
   }
   
@@ -132,7 +132,7 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: rgb(69, 69, 69);
+    background: var(--colour-11);
     cursor: pointer;
   }
 
@@ -144,8 +144,8 @@
   padding-left: 20px;
   margin-bottom: 8px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -156,7 +156,6 @@
 .container_filter input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
   height: 0;
   width: 0;
 }
@@ -168,17 +167,17 @@
   left: 0;
   height: 15px;
   width: 15px;
-  background-color: #eee;
+  background-color: var(--colour-1);
 }
 
 /* On mouse-over, add a grey background color */
 .container_filter:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: rgb(150, 150, 150);
 }
 
 /* When the checkbox is checked, add a blue background */
 .container_filter input:checked ~ .checkmark {
-  background-color: rgb(69, 69, 69);
+  background-color: var(--colour-11);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -209,7 +208,7 @@
   
 
   #min_value{
-    margin: 0px 10px;
+    margin: 0px 00px;
     font-size: 12px;
     font-weight: 550;
    float: left;
@@ -231,11 +230,19 @@
   .sort table th,td{
     padding: 5px;
     letter-spacing: 0.3px;
-    font-size: 12px;
-    font-weight: 550;
+    font-size: 14px;
+    font-weight: 500;
     /* background-color: rgb(221, 213, 213); */
+  }
+
+  .sort tr td {
+    cursor: pointer !important;
   }
 
   #hovereffect:hover{
       background-color: rgb(221, 213, 213);
+  }
+
+  th, td {
+    cursor: default;
   }

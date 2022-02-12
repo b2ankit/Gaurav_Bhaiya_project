@@ -12,7 +12,7 @@
       </head>
     <body>
         <body>
-            <div class="hero"><div class="title"><a href="index.html"><img src="./images/logo.png" width="20%"></a></div>
+            <div class="hero"><div class="title"><a href="index.html"><img src="./images/translogo.png" width="20%"></a></div>
             <div class="navbar">
               <div class="toggle-wrapper">
               <a href="#" class="toggle-button">
@@ -30,13 +30,24 @@
           <br>
           <br>
           <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
 
           <div class="checkoutInfo">
             <h2>Basket Contents</h2>
             <div class="subtitle"></div>
             <table class="checkoutList">
-                
+              
             </table>
+            <!--buttons here for navigation options-->
+            <div>
+                <button id="backtoproductsbutton">Back To Products</button>
+                <button id="emptybasketbutton">Empty Basket</button>
+            </div>
+
             <div id="customerDetails">
               <h2>Customer Details</h2>
 
@@ -46,7 +57,7 @@
                 <label for="emailAddress">Email:</label><input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address, containing an '@', '.' and appropriate length of domain" type="text" name="emailAddress" value="testuser@example.org">
                 <label for="contactNumber">Contact number:</label><input pattern="[0-9]{11}" title="Please enter a valid contact number, composed of just numbers, and with length 11" type="text" name="contactNumber" value="1234">
                 <label for="delAddress">Delivery Address:</label><input pattern="[A-Za-z.,- ]{2,}" title="Please enter a valid address, not containing any unecessary special characters" type="text" name="delAddress" value="12 Example Avenue, Example Town, EX4 7AL">
-                <button>Pay by Credit Card</button>
+                <button id="paybycreditcardbutton">Pay by Credit Card</button>
               </form>
 
             </div>

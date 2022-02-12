@@ -15,6 +15,10 @@ function init(){
 function resetListeners(){
 // document.getElementById("paycreditcard").removeEventListener("click",showCreditCardPage);
 // document.getElementById("paycreditcard").addEventListener('click',showCreditCardPage);
+    document.getElementById("backtoproductsbutton").removeEventListener("click",returnToProductsPage);
+    document.getElementById("backtoproductsbutton").addEventListener('click',returnToProductsPage);
+    document.getElementById("emptybasketbutton").removeEventListener("click",emptyBasket);
+    document.getElementById("emptybasketbutton").addEventListener('click',emptyBasket);
 }
 
 //When the pay by credit card link is clicked, show the creditcard.html in an iframe
@@ -29,13 +33,26 @@ function showCreditCardPage(){
 }
 
 
+function returnToProductsPage(){
+  // when we go back to the products page we need to pass the basket object 
+  // this was everything isnt deleted ??
+  location.replace("index.html")
+}
+function emptyBasket(){
+  basket = {}
+  setCookie('basket', JSON.stringify(basket));
+  location.replace("index.html")
+}
 /*
 * Calculate the totals and show the basket
 */
 function calculateBasket(){
   let total = 0;
   let numOfItems = 0;
-  let basket = JSON.parse(getCookie("basket"));
+  let basket;
+  // need to assign a value to basket if cookie doesn't exist, otherwise we get an error and remainder of the code doesn't execute
+  if (getCookie("basket") == "") basket = {};
+  else basket = JSON.parse(getCookie("basket"));
   console.log("basket " + getCookie("basket"));
   document.querySelector('.checkoutList').innerHTML = '';
 

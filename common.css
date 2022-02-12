@@ -59,27 +59,26 @@ button:disabled {
 }
 
 
-.searchbox{
+#searchbox{
     margin-right: 1em;
     border-radius: 2em;
-    box-shadow: 5px 5px #808080;
     border:0;
-    border-bottom:1px solid #555;  
     width:0;
+    height: 2em;
     padding-left: 2em;
     padding-right: 2em;
-    font-size: inherit;
-    font-weight: bold;
     background-color:rgba(255,255,255,0.9);
-    color: black;
-    width: 20em;
+    color: var(--colour-11);
+    width: 22em;
 }
 
 
 .search-bar{
-    display: none;
     padding-bottom: 18px;
     padding-top: 4px;
+    right: 0;
+    margin-top: 20px;
+    position: absolute;
 }
 
 .searchbuttons a span{
@@ -116,12 +115,14 @@ html{
 .productList{
     width: 90%;
     margin: 0 auto;
+    margin-top: 50px;
     padding: 50px;
 }
 
 .navbar{
     height: 3em;
-    background-color: var(--colour-1);
+    padding-bottom: 1%;
+    background-color: var(--colour-4);
 }
 
 .navbar,li ul {
@@ -165,7 +166,7 @@ html{
 
 .spacer{
     flex: 1;
-    background-color: var(--colour-1);
+    background-color: var(--colour-4);
     /* width: 10%; */
     height: 85%;
 }
@@ -239,7 +240,7 @@ html{
 .hero{
     text-align: center;
     height: var(--hero-height);
-    background-color: var(--colour-1);
+    background-color: var(--colour-4);
     position: fixed;
     width: 100%;
 }
@@ -270,6 +271,20 @@ html{
     border-radius: 10px;
     /* display: none; */
 }
+
+@media only screen and (max-width: 601px) {
+    #cookieMessage{
+        width: 90%;
+        position: fixed;
+        right: 0px;
+        bottom: 0px;
+        background-color: var(--colour-1);
+        padding: 2em;
+        margin: 0;
+        border-radius: 0;
+        /* display: none; */
+    }    
+  }
 
 #acceptCookies{
     font-size: 100%;
@@ -320,8 +335,8 @@ form.customerDetails button{
 
 .checkoutList{
     width:50%;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
 }
 
 .checkoutList{
@@ -356,10 +371,11 @@ form.customerDetails button{
 .alert{
     position: fixed;
     right: 0;
-    top: 160px;
+    top: 180px;
     padding: 15px;
-    background-color: white;
-    border: 3px solid var(--colour-2);
+    background-color: var(--colour-1);
+    border: 4px solid var(--colour-2);
+    opacity: 85%;
     border-radius: 25px;
     color: var(--colour-2);
     visibility: hidden;
@@ -367,7 +383,6 @@ form.customerDetails button{
     animation-fill-mode: forwards;*/
     z-index: 20;
     /*width: 100px;*/
-    opacity: .8;
     align-items: center;
     text-align: center;
 }

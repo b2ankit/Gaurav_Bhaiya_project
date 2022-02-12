@@ -40,7 +40,7 @@ var imagesArr = [["Artichokes","veg","reut-malichi-GQ62pYNohW0-unsplash.jpg","1"
 ["Watermelon","fruit","juven-dunn-hUkZv0Y47Ic-unsplash.jpg",1,"unit",295],
 ["Salmon","other","abstral-official-dKhkCiD4zEQ-unsplash.jpg",240,"g",400],
 ["Jelly Beans","other","amit-lahav-3t07n27XK-w-unsplash.jpg",50,"g",100],
-["Honey","other","art-rachen-Asj5DFw8UAw-unsplash.jpg",1,"unit",480],
+["Honey","other","art-rachen-Asj5DFw8UAw-unsplash.jpg",1,"jar",480],
 ["Ketchup","other","ashkan-forouzani-dYAPoTlWWZs-unsplash.jpg",240,"g",300],
 ["Milk","dairy","elizabeth-dunne-ccV4kUrSYIM-unsplash.jpg",1,"pint",180],
 ["Biscuits","other","ellieelien-04yMqTmUeHQ-unsplash.jpg",200,"g",150],

@@ -478,6 +478,8 @@ function min_product_price() {
   }
   var min_price_display = document.getElementById("min_value");
   min_price_display.innerHTML = "Min : £" + ((temp_price / 100));
+  var min_price = document.getElementById("range_bar_1");
+  min_price.min = (temp_price);
 
   set_the_price_cursor();
 }

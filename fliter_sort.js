@@ -18,7 +18,7 @@ function myFunction() {
 
   function showSliderValue() {
     rangeBullet.innerHTML = "£"+(rangeSlider.value/100);
-    var bulletPosition = (rangeSlider.value/rangeSlider.max);
-    rangeBullet.style.left = (bulletPosition*160) + "px";  
+    var bulletPosition = Number(((rangeSlider.value - rangeSlider.min) * 100) / (rangeSlider.max - rangeSlider.min)); 
+    rangeBullet.style.left = `calc(${bulletPosition}% + (${-8 - bulletPosition * 0.2}px))`;
   }
 

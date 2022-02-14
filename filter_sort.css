@@ -248,8 +248,8 @@
   }
 
   .rs-label {
-    position: relative;
-    transform-origin: center center;
+    position:relative;
+    /* transform-origin: center center; */
     display: block;
     width: 35px;
     height: 35px;

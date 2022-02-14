@@ -490,6 +490,8 @@ function set_the_price_cursor()
 {
   var rangeBullet_intial = document.getElementById("rs-bullet");
   rangeBullet_intial.innerHTML = "£"+(filter_maxprice/100);
-  rangeBullet_intial.style.left = 160 + "px";  
+  var rangeSlider = document.getElementById("range_bar_1");
+  var bulletPosition = Number(((rangeSlider.value - rangeSlider.min) * 100) / (rangeSlider.max - rangeSlider.min)); 
+    rangeBullet.style.left = `calc(${bulletPosition}% + (${-8 - bulletPosition * 0.2}px))`;
 }
 /** Logic to set the price cursor at beginning : End */
